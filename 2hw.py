@@ -66,10 +66,4 @@ while(True):
         get_vacancies(vacancies)
     except:
         get_vacancies(vacancies)
-        page = None
         break
-
-
-
-
-
