@@ -35,18 +35,18 @@ while(True):
                     salary_split = vacancy.find('span', {'data-qa': 'vacancy-serp__vacancy-compensation'}).getText().split()
                     vacancy_salary_currency = salary_split[-1]
                     if len(salary_split) == 6: # (220000 – 230000 руб)
-                        vacancy_salary_min = ' '.join(map(str, salary_split[0:2]))
-                        vacancy_salary_max = ' '.join(map(str, salary_split[3:5]))
+                        vacancy_salary_min = int(''.join(map(str, salary_split[0:2])))
+                        vacancy_salary_max = int(''.join(map(str, salary_split[3:5])))
                     if len(salary_split) == 4: # (от/до 380000 руб)
                         if salary_split[0] == 'от':
-                            vacancy_salary_min = ' '.join(map(str, salary_split[1:3]))
+                            vacancy_salary_min = int(''.join(map(str, salary_split[1:3])))
                             vacancy_salary_max = None
                         if salary_split[0] == 'до':
                             vacancy_salary_min = None
-                            vacancy_salary_max = ' '.join(map(str, salary_split[1:3]))
+                            vacancy_salary_max = int(''.join(map(str, salary_split[1:3])))
                     if len(salary_split) == 3: # (270000 руб)
-                        vacancy_salary_min = ' '.join(map(str, salary_split[0:2]))
-                        vacancy_salary_max = ' '.join(map(str, salary_split[0:2]))
+                        vacancy_salary_min = int(''.join(map(str, salary_split[0:2])))
+                        vacancy_salary_max = int(''.join(map(str, salary_split[0:2])))
                 else:
                     vacancy_salary_min = None
                     vacancy_salary_max = None
