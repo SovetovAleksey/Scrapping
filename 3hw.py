@@ -75,7 +75,7 @@ jobs = db.jobs
 
 unique_links = []
 cnt = 0
-jobs.delete_many({})
+#jobs.delete_many({})
 
 for vacancy in all_vacancy:
     if vacancy['Link'] not in unique_links:
