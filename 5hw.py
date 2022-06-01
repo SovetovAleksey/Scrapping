@@ -31,8 +31,7 @@ input.send_keys("NextPassword172#")
 
 input.send_keys(Keys.ENTER)
 
-mails = []
-unique_links = set()
+unique_links = []
 db_mail_ru = MongoClient('localhost', 27017)['mail_ru']
 messages = db_mail_ru.messages
 
@@ -41,7 +40,7 @@ num = driver.find_element(By.XPATH,
                           "//a[@class='nav__item js-shortcut nav__item_active nav__item_shortcut nav__item_child-level_0']").get_attribute(
     'title').split()[1]
 
-while len(mails) < int(num):
+while len(unique_links) < int(num):
     letters = driver.find_elements(By.XPATH,
                                    "//a[@class='llc llc_normal llc_new llc_new-selection js-letter-list-item js-tooltip-direction_letter-bottom'] | \
                                    //a[@class='llc llc_normal llc_last llc_new llc_new-selection js-letter-list-item js-tooltip-direction_letter-bottom'] | \
@@ -57,7 +56,7 @@ while len(mails) < int(num):
             date = letter.find_element(By.CLASS_NAME, 'llc__item_date').get_attribute('title')
             mail = {'author': author, 'date': date, 'subject': subject, 'link': link}
             messages.insert_one(mail)
-            unique_links.add(link)
+            unique_links.append(link)
 
     actions.move_to_element(letters[-1])
     actions.perform()
