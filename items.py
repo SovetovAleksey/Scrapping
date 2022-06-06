@@ -15,3 +15,4 @@ class BooksParserItem(scrapy.Item):
     rate = scrapy.Field()
     link = scrapy.Field()
     _id = scrapy.Field()
+    
